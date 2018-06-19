@@ -80,16 +80,16 @@ class TabelaAutores extends Component {
             </tr>
           </thead>
           <tbody>
-          {
-            this.props.lista.map(function(author){
-              return (
-                <tr key={author.id}>
-                  <td>{author.nome}</td>
-                  <td>{author.email}</td>
-                </tr>
-              );
-            })
-          }
+            {
+              this.props.lista.map(function(author){
+                return (
+                  <tr key={author.id}>
+                    <td>{author.nome}</td>
+                    <td>{author.email}</td>
+                  </tr>
+                );
+              })
+            }
           </tbody>
         </table>
       </div>
@@ -121,9 +121,14 @@ export default class AutorBox extends Component {
   render(){
     return(
       <div>
-        <FormularioAutor/>
-        <TabelaAutores lista={this.state.lista}/>
+        <div className="header">
+          <h1>Cadastro de Autor</h1>
+        </div>
+        <div className="content" id="content">
+          <FormularioAutor/>
+          <TabelaAutores lista={this.state.lista}/>
 
+        </div>
       </div>
     )
   }
