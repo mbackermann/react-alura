@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import $ from 'jquery';
 import PubSub from 'pubsub-js';
 
-export default class InputCustomizado extends Component{
+export default class SelectAutor extends Component{
 
     constructor(){
         super();
@@ -12,7 +13,16 @@ export default class InputCustomizado extends Component{
         return (
             <div className="pure-control-group">
               <label htmlFor={this.props.id}>{this.props.label}</label>
-              <input min={this.props.min} step={this.props.step} id={this.props.id} type={this.props.type} name={this.props.name} value={this.props.value}  onChange={this.props.onChange}/>
+              <select value={this.props.value} name={this.props.name} id={this.props.id} onChange={this.props.onChange}>
+                <option>Selecione o Autor</option>
+                {
+                  this.props.lista.map(function(autor){
+                    return(
+                      <option key={autor.id} value={autor.id}>{autor.nome}</option>
+                    );
+                  })
+                }
+              </select>
               <span className="error">{this.state.msgErro}</span>
             </div>
         );

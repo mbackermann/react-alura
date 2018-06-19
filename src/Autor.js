@@ -122,7 +122,7 @@ export default class AutorBox extends Component {
     return(
       <div>
         <div className="header">
-          <h1>Cadastro de Autor</h1>
+          <h1>Cadastro de Autores</h1>
         </div>
         <div className="content" id="content">
           <FormularioAutor/>
