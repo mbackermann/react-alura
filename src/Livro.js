@@ -12,9 +12,6 @@ class FormularioLivro extends Component {
     super();
     this.state = {titulo: '', preco: '', autorId: '', autores: []};
     this.enviaForm = this.enviaForm.bind(this);
-    this.setTitulo = this.setTitulo.bind(this);
-    this.setPreco = this.setPreco.bind(this);
-    this.setAutorId = this.setAutorId.bind(this);
   }
 
   enviaForm(event){
@@ -40,25 +37,19 @@ class FormularioLivro extends Component {
     })
   }
 
-  setTitulo(evento){
-    this.setState({titulo: evento.target.value})
-  }
-
-  setPreco(evento){
-    this.setState({preco: evento.target.value})
-  }
-
-  setAutorId(evento){
-    this.setState({autorId: evento.target.value})
+  salvaAlteracao(nomeInput,evento){
+    var campoSendoAlterado = {};
+    campoSendoAlterado[nomeInput] = evento.target.value;
+    this.setState(campoSendoAlterado);
   }
 
   render(){
     return(
       <div className="pure-form pure-form-aligned">
         <form className="pure-form pure-form-aligned" onSubmit={this.enviaForm} method="post">
-          <InputCustomizado id="titulo" name="titulo" type="text" value={this.state.titulo} onChange={this.setTitulo} label="Título"/>
-          <InputCustomizado id="preco" min="0.00" step="0.01" name="preco" type="number" value={this.state.preco} onChange={this.setPreco} label="Preço"/>
-          <SelectAutor id="autorId" name="autorId" value={this.state.autorId} onChange={this.setAutorId} label="Autor" lista={this.props.autores} />
+          <InputCustomizado id="titulo" name="titulo" type="text" value={this.state.titulo} onChange={this.salvaAlteracao.bind(this,'titulo')} label="Título"/>
+          <InputCustomizado id="preco" min="0.00" step="0.01" name="preco" type="number" value={this.state.preco} onChange={this.salvaAlteracao.bind(this,'preco')} label="Preço"/>
+          <SelectAutor id="autorId" name="autorId" value={this.state.autorId} onChange={this.salvaAlteracao.bind(this,'autorId')} label="Autor" lista={this.props.autores} />
           <BotaoSubmitCustomizado label="Gravar" />
         </form>
 
